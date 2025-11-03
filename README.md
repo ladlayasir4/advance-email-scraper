@@ -45,3 +45,32 @@ chmod +x install_shadow.sh
 ├── shadow-env/              # Virtual environment
 ├── install_shadow.sh        # Installation script
 
+
+
+# for windows 
+# Download from python.org or use chocolatey
+choco install python -y
+# Install chocolatey (if not installed)
+Set-ExecutionPolicy Bypass -Scope Process -Force
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Install required packages
+choco install poppler git -y
+# Create virtual environment
+python -m venv shadow-env
+shadow-env\Scripts\activate
+
+# Install packages
+pip install --upgrade pip
+pip install playwright aiohttp openpyxl python-docx pypdf2 dnspython beautifulsoup4 requests requests[socks] urllib3 pandas lxml aiohttp-socks socks pillow cryptography
+
+# Install Playwright browsers
+playwright install chromium
+# Using chocolatey
+choco install tor -y
+
+# Or download manually from torproject.org
+# Start Tor service
+tor
+done 
